@@ -554,7 +554,7 @@
 
             <script>
                 // Core AI States
-                let API_KEY = "AIzaSyCucQWPUAUswUyWzfA-4abt88TN5MGlejs";
+                let API_KEY = "";
                 let MODEL = "gemini-3.1-pro-preview";
                 const getEndpoint = () => `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
 
@@ -613,7 +613,7 @@
                         "Format": "BEJSON", "Format_Version": "104a", "Format_Creator": "Elton Boehnen",
                         "Schema_Name": "ApiKeyRegistry", "Records_Type": ["ApiKey"],
                         "Fields": [{"name": "key_slot", "type": "integer"}, {"name": "key", "type": "string"}],
-                        "Values": [[1, "YOUR_API_KEY_HERE_1"], [2, "YOUR_API_KEY_HERE_2"]]
+                        "Values": [[1, "API_KEY_SLOT_1"], [2, "API_KEY_SLOT_2"]]
                     };
                     downloadJSON(templateData, "gemini_keys_template.bejson");
                 });
