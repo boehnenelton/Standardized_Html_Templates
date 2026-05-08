@@ -1,0 +1,384 @@
+
+<!-- Script Name: Template Standard - Video Feed | Version: 1.0.0 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="A professional, responsive video feed HTML template featuring a three-column layout, paginated video grid cards, mobile sidebar, and integrated widgets. Created by Elton Boehnen.">
+    <meta name="author" content="Elton Boehnen">
+    <meta name="keywords" content="video feed template, HTML template, responsive design, video grid, Elton Boehnen, frontend">
+    <link rel="canonical" href="https://boehnenelton2024.pages.dev">
+    
+    <meta property="og:title" content="Video Feed Template by Elton Boehnen">
+    <meta property="og:description" content="A professional, responsive video feed HTML template featuring a three-column layout, paginated video grid, mobile sidebar, and integrated widgets.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://boehnenelton2024.pages.dev">
+    <meta property="og:site_name" content="Elton Boehnen Portfolio">
+
+    <title>Video Feed Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; padding-bottom: 60px; }
+        a { color: #de2626; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .emphasis { color: #de2626; }
+        header { display: flex; align-items: center; padding: 12px 24px; border-bottom: 1px solid #e5e5e5; }
+        .hamburger { cursor: pointer; display: flex; flex-direction: column; gap: 4px; margin-right: 24px; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 2px; background-color: #1a1a1a; }
+        .header-logo { font-weight: 600; font-size: 1.25rem; }
+        .breadcrumbs { padding: 8px 24px; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem; color: #666666; }
+        .breadcrumbs a { color: #de2626; }
+        .container { display: grid; grid-template-columns: 250px 1fr 250px; gap: 24px; padding: 12px 24px 24px 24px; min-height: calc(100vh - 120px); }
+        .sidebar-links { display: flex; flex-direction: column; }
+        .sidebar-links a { padding: 4px 8px; margin-bottom: 2px; font-size: 0.9rem; border-radius: 4px; }
+        .sidebar-links a:hover { background-color: #f5f5f5; }
+        .left-column, .mobile-sidebar { display: flex; flex-direction: column; height: 100%; }
+        .sidebar-top { flex: 3 1 0; overflow-y: auto; padding-bottom: 16px; }
+        .sidebar-bottom { flex: 1 1 0; background-color: #f8f9fa; border: 1px solid #e5e5e5; border-radius: 6px; padding: 16px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 0.9rem; text-align: center; }
+        .main-link-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 12px; margin-top: 12px; }
+        .main-link-grid a { display: block; padding: 4px 8px; background-color: #fcfcfc; border: 1px solid #f0f0f0; border-radius: 4px; text-align: center; font-size: 0.95rem; }
+        .main-link-grid a:hover { background-color: #f5f5f5; text-decoration: none; }
+        main.middle-column h1 { margin-top: 0; margin-bottom: 12px; }
+        .content-card { background-color: #f8f9fa; border: 1px solid #e5e5e5; border-radius: 6px; padding: 16px; margin-bottom: 16px; }
+        .card-feed-section { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+        .card-feed-title { margin: 0 0 8px 0; font-size: 1.1rem; font-weight: 600; }
+        .card-feed-description { margin: 0 0 12px 0; font-size: 0.95rem; color: #444444; }
+        .page-footer { margin-top: 24px; background-color: #f8f9fa; border: 1px solid #e5e5e5; border-radius: 6px; padding: 16px; text-align: center; font-size: 0.85rem; color: #666666; line-height: 1.6; }
+        .page-footer a { color: #de2626; text-decoration: none; }
+        .page-footer a:hover { text-decoration: underline; }
+        .global-docked-footer { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #ffffff; border-top: 1px solid #e5e5e5; padding: 12px 24px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); text-align: center; font-size: 0.85rem; color: #666666; z-index: 900; }
+        .global-docked-footer a { color: #de2626; }
+        .mobile-sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100vh; background: #ffffff; border-right: 1px solid #e5e5e5; z-index: 1000; transition: left 0.3s ease; padding: 24px; box-shadow: 2px 0 8px rgba(0,0,0,0.1); }
+        .mobile-sidebar.open { left: 0; }
+        .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 999; }
+        .sidebar-overlay.open { display: block; }
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .sidebar-title { font-weight: 600; font-size: 1.25rem; color: #1a1a1a; }
+        .close-sidebar { cursor: pointer; font-weight: 600; font-size: 1.2rem; color: #1a1a1a; }
+        @media (max-width: 768px) {
+            body { padding-bottom: 100px; }
+            .container { grid-template-columns: 1fr; }
+            .left-column, .right-column { display: none; }
+            .global-docked-footer { padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+        }
+
+        /* === Video Feed Styles === */
+        .video-feed-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .video-sort-label {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .video-sort-btn {
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: #444;
+            background: #fff;
+        }
+
+        .video-sort-btn.active, .video-sort-btn:hover {
+            background-color: #de2626;
+            color: #fff;
+            border-color: #de2626;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .video-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-thumb-wrap {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            overflow: hidden;
+        }
+
+        .video-thumb-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            color: #aaa;
+            font-size: 0.75rem;
+        }
+
+        .video-play-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(222, 38, 38, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #de2626;
+        }
+
+        .video-duration-badge {
+            position: absolute;
+            bottom: 6px;
+            right: 8px;
+            background: rgba(0,0,0,0.65);
+            color: #fff;
+            font-size: 0.72rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .video-card-body {
+            padding: 8px 2px 0 2px;
+        }
+
+        .video-card-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 0 0 4px 0;
+            line-height: 1.4;
+        }
+
+        .video-card-meta {
+            font-size: 0.78rem;
+            color: #999;
+        }
+
+        .video-card-channel {
+            font-size: 0.8rem;
+            color: #555;
+            margin-bottom: 2px;
+        }
+
+        .video-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 24px;
+        }
+
+        .video-page-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            font-size: 0.875rem;
+            cursor: pointer;
+            color: #444;
+            background: #fff;
+        }
+
+        .video-page-btn.active {
+            background-color: #de2626;
+            color: #fff;
+            border-color: #de2626;
+            font-weight: 600;
+        }
+
+        .video-page-btn:hover:not(.active) {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <nav class="mobile-sidebar" id="mobileNav">
+        <div class="sidebar-top">
+            <div class="sidebar-header">
+                <span class="sidebar-title">Nav Section Title</span>
+                <span class="close-sidebar" id="closeSidebar">✕</span>
+            </div>
+            <div style="font-weight: 600; margin-bottom: 12px;">Nav Section 1</div>
+            <div class="sidebar-links" style="margin-bottom: 24px;">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
+            <div style="font-weight: 600; margin-bottom: 12px;">Nav Section 2</div>
+            <div class="sidebar-links">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="sidebar-bottom">
+            <div>Placeholder Widget<br><span style="font-size: 0.85em; opacity: 0.8;">Rec. Size: 200w x 250h</span></div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="hamburger" id="hamburgerToggle"><span></span><span></span><span></span></div>
+        <div class="header-logo">Header Section</div>
+    </header>
+
+    <div class="breadcrumbs">
+        <a href="#">Breadcrumb 1</a> / <a href="#">Breadcrumb 2</a> / <span>Breadcrumb 3</span>
+    </div>
+
+    <div class="container">
+        <aside class="left-column">
+            <div class="sidebar-top">
+                <div style="font-weight: 600; margin-bottom: 12px; padding: 0 8px;">Left Column Section</div>
+                <nav class="sidebar-links">
+                    <a href="#">Link 1</a><a href="#">Link 2</a><a href="#">Link 3</a><a href="#">Link 4</a><a href="#">Link 5</a>
+                </nav>
+            </div>
+            <div class="sidebar-bottom"><div>Placeholder Widget<br><span style="font-size: 0.85em; opacity: 0.8;">Rec. Size: 200w x 250h</span></div></div>
+        </aside>
+
+        <main class="middle-column">
+            <h1 class="emphasis">Video Feed</h1>
+
+            <div class="content-card">
+                <div>Browse the latest videos. New uploads added weekly — sorted by date or popularity.</div>
+            </div>
+
+            <div class="video-feed-controls">
+                <span class="video-sort-label">Sort by:</span>
+                <span class="video-sort-btn active">Newest</span>
+                <span class="video-sort-btn">Most Viewed</span>
+                <span class="video-sort-btn">Top Rated</span>
+            </div>
+
+            <div class="video-grid">
+
+                <div class="video-card">
+                    <div class="video-thumb-wrap">
+                        <div class="video-thumb-inner">
+                            <div class="video-play-icon">▶</div>
+                            <span>Thumbnail Placeholder</span>
+                        </div>
+                        <div class="video-duration-badge">12:34</div>
+                    </div>
+                    <div class="video-card-body">
+                        <p class="video-card-title">Video Title Goes Here — An Interesting Episode or Upload</p>
+                        <div class="video-card-channel">Channel Name</div>
+                        <div class="video-card-meta">4.2K views &nbsp;·&nbsp; May 7, 2025</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumb-wrap">
+                        <div class="video-thumb-inner">
+                            <div class="video-play-icon">▶</div>
+                            <span>Thumbnail Placeholder</span>
+                        </div>
+                        <div class="video-duration-badge">8:05</div>
+                    </div>
+                    <div class="video-card-body">
+                        <p class="video-card-title">Second Video Title — A Deep Dive Into the Topic</p>
+                        <div class="video-card-channel">Channel Name</div>
+                        <div class="video-card-meta">11.8K views &nbsp;·&nbsp; May 5, 2025</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumb-wrap">
+                        <div class="video-thumb-inner">
+                            <div class="video-play-icon">▶</div>
+                            <span>Thumbnail Placeholder</span>
+                        </div>
+                        <div class="video-duration-badge">21:47</div>
+                    </div>
+                    <div class="video-card-body">
+                        <p class="video-card-title">Third Video Title — Tutorial, Review, or Showcase</p>
+                        <div class="video-card-channel">Channel Name</div>
+                        <div class="video-card-meta">987 views &nbsp;·&nbsp; May 2, 2025</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumb-wrap">
+                        <div class="video-thumb-inner">
+                            <div class="video-play-icon">▶</div>
+                            <span>Thumbnail Placeholder</span>
+                        </div>
+                        <div class="video-duration-badge">5:30</div>
+                    </div>
+                    <div class="video-card-body">
+                        <p class="video-card-title">Fourth Video Title — Quick Tips and Highlights</p>
+                        <div class="video-card-channel">Channel Name</div>
+                        <div class="video-card-meta">2.3K views &nbsp;·&nbsp; Apr 29, 2025</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="video-pagination">
+                <div class="video-page-btn">&#8249;</div>
+                <div class="video-page-btn active">1</div>
+                <div class="video-page-btn">2</div>
+                <div class="video-page-btn">3</div>
+                <div class="video-page-btn">4</div>
+                <div class="video-page-btn">&#8250;</div>
+            </div>
+
+            <footer class="page-footer">
+                <span style="font-weight: 600; color: #1a1a1a;">Elton Boehnen</span> &nbsp;|&nbsp;
+                <a href="mailto:boehnenelton2024@gmail.com">Email</a> &nbsp;|&nbsp;
+                <a href="https://github.com/boehnenelton/" target="_blank">GitHub</a> &nbsp;|&nbsp;
+                <a href="https://boehnenelton2024.pages.dev" target="_blank">Website</a>
+            </footer>
+        </main>
+
+        <aside class="right-column">
+            <div style="font-weight: 600; margin-bottom: 12px; padding: 0 8px;">Right Column Section</div>
+            <nav class="sidebar-links">
+                <a href="#">Link 1</a><a href="#">Link 2</a><a href="#">Link 3</a>
+            </nav>
+        </aside>
+    </div>
+
+    <div class="global-docked-footer">
+        <span style="font-weight: 600;">Elton Boehnen</span> &nbsp;|&nbsp;
+        <a href="https://github.com/boehnenelton/" target="_blank">GitHub</a> &nbsp;|&nbsp;
+        <a href="https://boehnenelton2024.pages.dev" target="_blank">Website</a>
+    </div>
+
+    <script>
+        const hamburgerToggle = document.getElementById('hamburgerToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const closeSidebar = document.getElementById('closeSidebar');
+        function toggleSidebar() {
+            mobileNav.classList.toggle('open');
+            sidebarOverlay.classList.toggle('open');
+        }
+        hamburgerToggle.addEventListener('click', toggleSidebar);
+        closeSidebar.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+    </script>
+</body>
+</html>
