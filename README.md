@@ -1,6 +1,6 @@
-# Standardized HTML Templates
+# Standardized HTML Templates (v2026)
 
-A collection of professional, responsive, and standardized HTML templates for various web applications and content types.
+A collection of professional, responsive, and standardized HTML templates and body-only components for modern web applications.
 
 ## Author Information
 - **Name:** Elton Boehnen
@@ -9,22 +9,18 @@ A collection of professional, responsive, and standardized HTML templates for va
 - **Website:** [https://boehnenelton2024.pages.dev](https://boehnenelton2024.pages.dev)
 
 ## Features
-- **Responsive Design:** Optimized for mobile, tablet, and desktop viewing.
-- **Modern Layouts:** Includes three-column layouts, mobile sidebars, and integrated widgets.
-- **Clean Code:** Standardized HTML5 and Vanilla CSS for maximum performance and compatibility.
-- **Thematic Consistency:** Professional styling across all templates.
+- **High-Fidelity Scaffolding:** All full templates share an identical 3-column layout grid.
+- **Body Components:** Standalone, reusable snippets in `/components/body/` with scaffolding stripped.
+- **Expanded Library:** Now includes 47 full-page templates covering Auth, Admin, Health, and Analytics.
+- **Thematic Consistency:** Unified primary emphasis (#de2626) and Inter font stack.
 
-## Included Templates
-This repository contains templates for:
-- Long-form Articles
-- Card Feeds (Blog, Gallery, News, Podcast, Product, Video)
-- Interactive Components (Chat, Kanban, Timelines, FAQ Accordions)
-- Data Visualization (Stats Dashboards, Data Tables)
-- Media (Image Gallery, Video Player)
-- And more...
+## Repository Structure
+- `/*.html`: Full-page templates (Layout + Style + Body).
+- `/components/body/`: Surgically extracted body-only components.
+- `/plans/`: Staging area for architectural planning.
 
 ## Standards & Formatting
-All templates follow the **2026 Standards** for web development, ensuring high-contrast accessibility, platform-native resilience, and efficient loading.
+Following the **2026 Standards**: high-contrast accessibility, platform-native resilience, and zero-dependency Vanilla CSS/JS.
 
 ## License
 Created and maintained by Elton Boehnen. All rights reserved.

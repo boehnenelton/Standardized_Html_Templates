@@ -1,0 +1,359 @@
+<!-- Component Name: Template Standard - Glossary | Type: Body Component | Version: 1.0.0 -->
+<style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            /* Extra padding at the bottom for desktop, overridden on mobile */
+            padding-bottom: 60px; 
+        }
+
+        /* Colors & Links */
+        a {
+            color: #de2626;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .emphasis {
+            color: #de2626;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-right: 24px;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #1a1a1a;
+        }
+
+        .header-logo {
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        /* Breadcrumb Section */
+        .breadcrumbs {
+            padding: 8px 24px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.875rem;
+            color: #666666;
+        }
+
+        .breadcrumbs a {
+            color: #de2626;
+        }
+
+        /* Layout Section */
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr 250px;
+            gap: 24px;
+            padding: 12px 24px 24px 24px;
+            min-height: calc(100vh - 120px);
+        }
+
+        /* Sidebar Links Section */
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-links a {
+            padding: 4px 8px;
+            margin-bottom: 2px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
+
+        .sidebar-links a:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Left Column & Mobile Sidebar Split */
+        .left-column, .mobile-sidebar {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .sidebar-top {
+            flex: 3 1 0;
+            overflow-y: auto;
+            padding-bottom: 16px;
+        }
+
+        .sidebar-bottom {
+            flex: 1 1 0;
+            background-color: #f8f9fa;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Main Body Links (3 Columns) */
+        .main-link-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px 12px;
+            margin-top: 12px;
+        }
+
+        .main-link-grid a {
+            display: block;
+            padding: 4px 8px;
+            background-color: #fcfcfc;
+            border: 1px solid #f0f0f0;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .main-link-grid a:hover {
+            background-color: #f5f5f5;
+            text-decoration: none;
+        }
+
+        /* Main content adjustments */
+        main.middle-column h1 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .content-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        /* Card Feed Specific Styles */
+        .card-feed-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .card-feed-title {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-feed-description {
+            margin: 0 0 12px 0;
+            font-size: 0.95rem;
+            color: #444444;
+        }
+
+        /* Content Footer Section */
+        .page-footer {
+            margin-top: 24px;
+            background-color: #f8f9fa;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        .page-footer a {
+            color: #de2626;
+            text-decoration: none;
+        }
+
+        .page-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Docked Global Footer */
+        .global-docked-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 1px solid #e5e5e5;
+            padding: 12px 24px;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom));
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666666;
+            z-index: 900;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        .global-docked-footer a {
+            color: #de2626;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .global-docked-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Sidebar Menu */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #e5e5e5;
+            z-index: 1000;
+            transition: left 0.3s ease;
+            padding: 24px;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+        }
+
+        .mobile-sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .sidebar-overlay.open {
+            display: block;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .sidebar-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: #1a1a1a;
+        }
+
+        .close-sidebar {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #1a1a1a;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                /* Add 100px padding at the bottom to account for browser toolbars and the docked footer */
+                padding-bottom: 100px; 
+            }
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .left-column, .right-column {
+                display: none;
+            }
+            .global-docked-footer {
+                padding-bottom: calc(16px + env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Glossary / Definition Feed */
+        .glossary-index { display: flex; gap: 4px; flex-wrap: wrap; margin: 12px 0; }
+        .glossary-index a { padding: 3px 8px; background: #f0f0f0; border-radius: 3px; font-size: 0.8rem; font-weight: 600; }
+        .glossary-index a:hover { background: #e5e5e5; text-decoration: none; }
+        .glossary-section { margin-top: 20px; }
+        .glossary-letter { font-size: 1.1rem; font-weight: 700; color: #de2626; border-bottom: 2px solid #de2626; padding-bottom: 4px; margin-bottom: 12px; }
+        .glossary-entry { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #f0f0f0; }
+        .glossary-entry:last-child { border-bottom: none; }
+        .glossary-term { font-weight: 600; font-size: 0.95rem; margin: 0 0 4px 0; }
+        .glossary-def { font-size: 0.88rem; color: #444; margin: 0; line-height: 1.6; }
+        .glossary-also { font-size: 0.8rem; color: #de2626; margin-top: 4px; }
+    </style>
+
+<div class="content-card">
+                <div>Term and definition reference placeholder — alphabetical index below.</div>
+            </div>
+
+            <div class="glossary-index">
+                <a href="#gl-a">A</a>
+                <a href="#gl-b">B</a>
+                <a href="#gl-c">C</a>
+                <a href="#gl-d">D</a>
+                <a href="#gl-e">E</a>
+            </div>
+
+            <div class="glossary-section" id="gl-a">
+                <div class="glossary-letter">A</div>
+                <div class="glossary-entry">
+                    <p class="glossary-term">Term Alpha</p>
+                    <p class="glossary-def">Definition placeholder for Term Alpha. Provide a clear, concise explanation of the term here. Can span multiple sentences.</p>
+                    <div class="glossary-also">See also: <a href="#">Related Term</a></div>
+                </div>
+                <div class="glossary-entry">
+                    <p class="glossary-term">Term Apex</p>
+                    <p class="glossary-def">Definition placeholder for Term Apex. Provide a clear, concise explanation of the term here.</p>
+                </div>
+            </div>
+
+            <div class="glossary-section" id="gl-b">
+                <div class="glossary-letter">B</div>
+                <div class="glossary-entry">
+                    <p class="glossary-term">Term Beta</p>
+                    <p class="glossary-def">Definition placeholder for Term Beta. Provide a clear, concise explanation of the term here. Can span multiple sentences.</p>
+                </div>
+            </div>
+
+            <div class="glossary-section" id="gl-c">
+                <div class="glossary-letter">C</div>
+                <div class="glossary-entry">
+                    <p class="glossary-term">Term Core</p>
+                    <p class="glossary-def">Definition placeholder for Term Core. Provide a clear, concise explanation of the term here.</p>
+                    <div class="glossary-also">See also: <a href="#">Related Term</a></div>
+                </div>
+                <div class="glossary-entry">
+                    <p class="glossary-term">Term Cycle</p>
+                    <p class="glossary-def">Definition placeholder for Term Cycle. Provide a clear, concise explanation of the term here.</p>
+                </div>
+            </div>

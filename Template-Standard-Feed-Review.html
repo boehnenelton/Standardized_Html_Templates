@@ -1,0 +1,461 @@
+
+<!-- Script Name: Template Standard - Review Feed | Version: 1.0.0 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="A professional, responsive review feed HTML template featuring a three-column layout, star ratings, summary score card, paginated user reviews. Created by Elton Boehnen.">
+    <meta name="author" content="Elton Boehnen">
+    <meta name="keywords" content="review feed template, HTML template, responsive design, star ratings, user reviews, Elton Boehnen, frontend">
+    <link rel="canonical" href="https://boehnenelton2024.pages.dev">
+
+    <meta property="og:title" content="Review Feed Template by Elton Boehnen">
+    <meta property="og:description" content="A professional, responsive review feed HTML template with star rating summary, paginated user reviews, and filter controls.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://boehnenelton2024.pages.dev">
+    <meta property="og:site_name" content="Elton Boehnen Portfolio">
+
+    <title>Review Feed Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; padding-bottom: 60px; }
+        a { color: #de2626; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .emphasis { color: #de2626; }
+        header { display: flex; align-items: center; padding: 12px 24px; border-bottom: 1px solid #e5e5e5; }
+        .hamburger { cursor: pointer; display: flex; flex-direction: column; gap: 4px; margin-right: 24px; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 2px; background-color: #1a1a1a; }
+        .header-logo { font-weight: 600; font-size: 1.25rem; }
+        .breadcrumbs { padding: 8px 24px; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem; color: #666666; }
+        .breadcrumbs a { color: #de2626; }
+        .container { display: grid; grid-template-columns: 250px 1fr 250px; gap: 24px; padding: 12px 24px 24px 24px; min-height: calc(100vh - 120px); }
+        .sidebar-links { display: flex; flex-direction: column; }
+        .sidebar-links a { padding: 4px 8px; margin-bottom: 2px; font-size: 0.9rem; border-radius: 4px; }
+        .sidebar-links a:hover { background-color: #f5f5f5; }
+        .left-column, .mobile-sidebar { display: flex; flex-direction: column; height: 100%; }
+        .sidebar-top { flex: 3 1 0; overflow-y: auto; padding-bottom: 16px; }
+        .sidebar-bottom { flex: 1 1 0; background-color: #f8f9fa; border: 1px solid #e5e5e5; border-radius: 6px; padding: 16px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 0.9rem; text-align: center; }
+        .main-link-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 12px; margin-top: 12px; }
+        .main-link-grid a { display: block; padding: 4px 8px; background-color: #fcfcfc; border: 1px solid #f0f0f0; border-radius: 4px; text-align: center; font-size: 0.95rem; }
+        .main-link-grid a:hover { background-color: #f5f5f5; text-decoration: none; }
+        main.middle-column h1 { margin-top: 0; margin-bottom: 12px; }
+        .content-card { background-color: #f8f9fa; border: 1px solid #e5e5e5; border-radius: 6px; padding: 16px; margin-bottom: 16px; }
+        .card-feed-section { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+        .card-feed-title { margin: 0 0 8px 0; font-size: 1.1rem; font-weight: 600; }
+        .card-feed-description { margin: 0 0 12px 0; font-size: 0.95rem; color: #444444; }
+        .page-footer { margin-top: 24px; background-color: #f8f9fa; border: 1px solid #e5e5e5; border-radius: 6px; padding: 16px; text-align: center; font-size: 0.85rem; color: #666666; line-height: 1.6; }
+        .page-footer a { color: #de2626; text-decoration: none; }
+        .page-footer a:hover { text-decoration: underline; }
+        .global-docked-footer { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #ffffff; border-top: 1px solid #e5e5e5; padding: 12px 24px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); text-align: center; font-size: 0.85rem; color: #666666; z-index: 900; }
+        .global-docked-footer a { color: #de2626; }
+        .mobile-sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100vh; background: #ffffff; border-right: 1px solid #e5e5e5; z-index: 1000; transition: left 0.3s ease; padding: 24px; box-shadow: 2px 0 8px rgba(0,0,0,0.1); }
+        .mobile-sidebar.open { left: 0; }
+        .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 999; }
+        .sidebar-overlay.open { display: block; }
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .sidebar-title { font-weight: 600; font-size: 1.25rem; color: #1a1a1a; }
+        .close-sidebar { cursor: pointer; font-weight: 600; font-size: 1.2rem; color: #1a1a1a; }
+        @media (max-width: 768px) {
+            body { padding-bottom: 100px; }
+            .container { grid-template-columns: 1fr; }
+            .left-column, .right-column { display: none; }
+            .global-docked-footer { padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+        }
+
+        /* === Review Feed Styles === */
+        .review-summary {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: #f8f9fa;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .review-score-block {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .review-score-big {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #de2626;
+            line-height: 1;
+        }
+
+        .review-stars-row {
+            font-size: 1rem;
+            color: #de2626;
+            letter-spacing: 1px;
+            margin: 4px 0;
+        }
+
+        .review-score-count {
+            font-size: 0.78rem;
+            color: #999;
+        }
+
+        .review-bars {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .review-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: #777;
+        }
+
+        .review-bar-label {
+            min-width: 32px;
+            text-align: right;
+        }
+
+        .review-bar-track {
+            flex: 1;
+            height: 6px;
+            background: #e5e5e5;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .review-bar-fill {
+            height: 100%;
+            background-color: #de2626;
+            border-radius: 3px;
+        }
+
+        .review-bar-pct {
+            min-width: 28px;
+        }
+
+        .review-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .review-filter-btn {
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: #444;
+            background: #fff;
+        }
+
+        .review-filter-btn.active, .review-filter-btn:hover {
+            background-color: #de2626;
+            color: #fff;
+            border-color: #de2626;
+        }
+
+        .review-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .review-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-item-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .review-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: #e5e5e5;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .review-author-block {
+            flex: 1;
+        }
+
+        .review-author-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .review-author-meta {
+            font-size: 0.76rem;
+            color: #aaa;
+        }
+
+        .review-item-stars {
+            font-size: 0.9rem;
+            color: #de2626;
+            letter-spacing: 1px;
+        }
+
+        .review-item-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 0 0 6px 0;
+        }
+
+        .review-item-body {
+            font-size: 0.875rem;
+            color: #444;
+            line-height: 1.6;
+            margin: 0 0 8px 0;
+        }
+
+        .review-helpful-row {
+            font-size: 0.78rem;
+            color: #999;
+        }
+
+        .review-helpful-row a {
+            font-size: 0.78rem;
+        }
+
+        .review-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 24px;
+        }
+
+        .review-page-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            font-size: 0.875rem;
+            cursor: pointer;
+            color: #444;
+            background: #fff;
+        }
+
+        .review-page-btn.active {
+            background-color: #de2626;
+            color: #fff;
+            border-color: #de2626;
+            font-weight: 600;
+        }
+
+        .review-page-btn:hover:not(.active) {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <nav class="mobile-sidebar" id="mobileNav">
+        <div class="sidebar-top">
+            <div class="sidebar-header">
+                <span class="sidebar-title">Nav Section Title</span>
+                <span class="close-sidebar" id="closeSidebar">✕</span>
+            </div>
+            <div style="font-weight: 600; margin-bottom: 12px;">Nav Section 1</div>
+            <div class="sidebar-links" style="margin-bottom: 24px;">
+                <a href="#">Link 1</a><a href="#">Link 2</a><a href="#">Link 3</a>
+            </div>
+            <div style="font-weight: 600; margin-bottom: 12px;">Nav Section 2</div>
+            <div class="sidebar-links">
+                <a href="#">Link 1</a><a href="#">Link 2</a><a href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="sidebar-bottom"><div>Placeholder Widget<br><span style="font-size: 0.85em; opacity: 0.8;">Rec. Size: 200w x 250h</span></div></div>
+    </nav>
+
+    <header>
+        <div class="hamburger" id="hamburgerToggle"><span></span><span></span><span></span></div>
+        <div class="header-logo">Header Section</div>
+    </header>
+
+    <div class="breadcrumbs">
+        <a href="#">Breadcrumb 1</a> / <a href="#">Breadcrumb 2</a> / <span>Breadcrumb 3</span>
+    </div>
+
+    <div class="container">
+        <aside class="left-column">
+            <div class="sidebar-top">
+                <div style="font-weight: 600; margin-bottom: 12px; padding: 0 8px;">Left Column Section</div>
+                <nav class="sidebar-links">
+                    <a href="#">Link 1</a><a href="#">Link 2</a><a href="#">Link 3</a><a href="#">Link 4</a><a href="#">Link 5</a>
+                </nav>
+            </div>
+            <div class="sidebar-bottom"><div>Placeholder Widget<br><span style="font-size: 0.85em; opacity: 0.8;">Rec. Size: 200w x 250h</span></div></div>
+        </aside>
+
+        <main class="middle-column">
+            <h1 class="emphasis">Reviews</h1>
+
+            <div class="review-summary">
+                <div class="review-score-block">
+                    <div class="review-score-big">4.3</div>
+                    <div class="review-stars-row">★★★★☆</div>
+                    <div class="review-score-count">Based on 214 reviews</div>
+                </div>
+                <div class="review-bars">
+                    <div class="review-bar-row">
+                        <span class="review-bar-label">5 ★</span>
+                        <div class="review-bar-track"><div class="review-bar-fill" style="width:58%"></div></div>
+                        <span class="review-bar-pct">58%</span>
+                    </div>
+                    <div class="review-bar-row">
+                        <span class="review-bar-label">4 ★</span>
+                        <div class="review-bar-track"><div class="review-bar-fill" style="width:24%"></div></div>
+                        <span class="review-bar-pct">24%</span>
+                    </div>
+                    <div class="review-bar-row">
+                        <span class="review-bar-label">3 ★</span>
+                        <div class="review-bar-track"><div class="review-bar-fill" style="width:10%"></div></div>
+                        <span class="review-bar-pct">10%</span>
+                    </div>
+                    <div class="review-bar-row">
+                        <span class="review-bar-label">2 ★</span>
+                        <div class="review-bar-track"><div class="review-bar-fill" style="width:5%"></div></div>
+                        <span class="review-bar-pct">5%</span>
+                    </div>
+                    <div class="review-bar-row">
+                        <span class="review-bar-label">1 ★</span>
+                        <div class="review-bar-track"><div class="review-bar-fill" style="width:3%"></div></div>
+                        <span class="review-bar-pct">3%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-controls">
+                <span class="review-filter-btn active">All Stars</span>
+                <span class="review-filter-btn">5 ★</span>
+                <span class="review-filter-btn">4 ★</span>
+                <span class="review-filter-btn">3 ★ &amp; Below</span>
+            </div>
+
+            <div class="review-feed">
+
+                <div class="review-item">
+                    <div class="review-item-header">
+                        <div class="review-avatar">JD</div>
+                        <div class="review-author-block">
+                            <p class="review-author-name">Reviewer Display Name</p>
+                            <span class="review-author-meta">Verified Purchase &nbsp;·&nbsp; May 7, 2025</span>
+                        </div>
+                        <div class="review-item-stars">★★★★★</div>
+                    </div>
+                    <p class="review-item-title">Review Headline or Summary Title</p>
+                    <p class="review-item-body">The full text of the reviewer's comments. This could be one to several sentences describing their experience with the product, service, or content. It covers what they liked, what worked well, and any standout features they noticed.</p>
+                    <div class="review-helpful-row">Was this helpful? <a href="#">Yes (12)</a> &nbsp;·&nbsp; <a href="#">No (1)</a></div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-item-header">
+                        <div class="review-avatar">SA</div>
+                        <div class="review-author-block">
+                            <p class="review-author-name">Second Reviewer Name</p>
+                            <span class="review-author-meta">Verified Purchase &nbsp;·&nbsp; May 3, 2025</span>
+                        </div>
+                        <div class="review-item-stars">★★★★☆</div>
+                    </div>
+                    <p class="review-item-title">Another Review Headline — Four Stars</p>
+                    <p class="review-item-body">The full text of this review. This reviewer gives four stars and provides balanced feedback — mentioning positives as well as a minor point that kept them from giving the full five stars.</p>
+                    <div class="review-helpful-row">Was this helpful? <a href="#">Yes (7)</a> &nbsp;·&nbsp; <a href="#">No (0)</a></div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-item-header">
+                        <div class="review-avatar">MK</div>
+                        <div class="review-author-block">
+                            <p class="review-author-name">Third Reviewer Name</p>
+                            <span class="review-author-meta">Apr 28, 2025</span>
+                        </div>
+                        <div class="review-item-stars">★★★☆☆</div>
+                    </div>
+                    <p class="review-item-title">Three Stars — Good But Has Room to Improve</p>
+                    <p class="review-item-body">This reviewer leaves a mixed assessment. They mention specific things that worked for them and areas they felt could be better. The tone is constructive and the feedback is specific.</p>
+                    <div class="review-helpful-row">Was this helpful? <a href="#">Yes (3)</a> &nbsp;·&nbsp; <a href="#">No (2)</a></div>
+                </div>
+
+            </div>
+
+            <div class="review-pagination">
+                <div class="review-page-btn">&#8249;</div>
+                <div class="review-page-btn active">1</div>
+                <div class="review-page-btn">2</div>
+                <div class="review-page-btn">3</div>
+                <div class="review-page-btn">4</div>
+                <div class="review-page-btn">&#8250;</div>
+            </div>
+
+            <footer class="page-footer">
+                <span style="font-weight: 600; color: #1a1a1a;">Author Name</span> &nbsp;|&nbsp;
+                <a href="#">Email Link</a> &nbsp;|&nbsp;
+                <a href="#">Social Link 1</a> &nbsp;|&nbsp;
+                <a href="#">Website Link</a>
+            </footer>
+        </main>
+
+        <aside class="right-column">
+            <div style="font-weight: 600; margin-bottom: 12px; padding: 0 8px;">Right Column Section</div>
+            <nav class="sidebar-links">
+                <a href="#">Link 1</a><a href="#">Link 2</a><a href="#">Link 3</a>
+            </nav>
+        </aside>
+    </div>
+
+    <div class="global-docked-footer">
+        <span style="font-weight: 600;">Author Name</span> &nbsp;|&nbsp;
+        <a href="#">Social Link 1</a> &nbsp;|&nbsp;
+        <a href="#">Website Link</a>
+    </div>
+
+    <script>
+        const hamburgerToggle = document.getElementById('hamburgerToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const closeSidebar = document.getElementById('closeSidebar');
+        function toggleSidebar() {
+            mobileNav.classList.toggle('open');
+            sidebarOverlay.classList.toggle('open');
+        }
+        hamburgerToggle.addEventListener('click', toggleSidebar);
+        closeSidebar.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+    </script>
+</body>
+</html>
