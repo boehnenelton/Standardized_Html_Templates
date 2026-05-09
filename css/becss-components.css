@@ -293,7 +293,20 @@
         .pnx-code-block { background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 4px; overflow-x: auto; margin-top: 8px; font-family: monospace; font-size: 0.8rem; }
 
         @container (max-width: 768px) {
-            .pnx-panel { flex-direction: column; }
+            .pnx-panel { flex-direction: column; 
+        .c-app-converter__file-list {
+            font-size: 0.8rem;
+            color: #666;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-top: 1px dashed #e5e5e5;
+            padding: 8px 0;
+            margin-top: 8px;
+            width: 100%;
+            max-width: 100%;
+            display: block;
+        }
+    }
         }
     }
 }
