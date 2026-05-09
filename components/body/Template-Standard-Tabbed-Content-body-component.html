@@ -1,63 +1,8 @@
 <!-- Component Name: Template Standard - Tabbed Content | Type: Body Component | Version: 1.0.0 -->
-<style>
-        * { box-sizing: border-box; }
-        body { margin:0; padding:0; font-family:'Inter',sans-serif; background-color:#ffffff; color:#1a1a1a; padding-bottom:60px; }
-        a { color:#de2626; text-decoration:none; }
-        a:hover { text-decoration:underline; }
-        .emphasis { color:#de2626; }
-        header { display:flex; align-items:center; padding:12px 24px; border-bottom:1px solid #e5e5e5; }
-        .hamburger { cursor:pointer; display:flex; flex-direction:column; gap:4px; margin-right:24px; padding:4px; }
-        .hamburger span { display:block; width:24px; height:2px; background-color:#1a1a1a; }
-        .header-logo { font-weight:600; font-size:1.25rem; }
-        .breadcrumbs { padding:8px 24px; border-bottom:1px solid #f0f0f0; font-size:0.875rem; color:#666666; }
-        .breadcrumbs a { color:#de2626; }
-        .container { display:grid; grid-template-columns:250px 1fr 250px; gap:24px; padding:12px 24px 24px 24px; min-height:calc(100vh - 120px); }
-        .sidebar-links { display:flex; flex-direction:column; }
-        .sidebar-links a { padding:4px 8px; margin-bottom:2px; font-size:0.9rem; border-radius:4px; }
-        .sidebar-links a:hover { background-color:#f5f5f5; }
-        .left-column, .mobile-sidebar { display:flex; flex-direction:column; height:100%; }
-        .sidebar-top { flex:3 1 0; overflow-y:auto; padding-bottom:16px; }
-        .sidebar-bottom { flex:1 1 0; background-color:#f8f9fa; border:1px solid #e5e5e5; border-radius:6px; padding:16px; display:flex; align-items:center; justify-content:center; color:#666; font-size:0.9rem; text-align:center; }
-        main.middle-column h1 { margin-top:0; margin-bottom:12px; }
-        .content-card { background-color:#f8f9fa; border:1px solid #e5e5e5; border-radius:6px; padding:16px; margin-bottom:16px; }
-        .page-footer { margin-top:24px; background-color:#f8f9fa; border:1px solid #e5e5e5; border-radius:6px; padding:16px; text-align:center; font-size:0.85rem; color:#666666; line-height:1.6; }
-        .page-footer a { color:#de2626; }
-        .page-footer a:hover { text-decoration:underline; }
-        .global-docked-footer { position:fixed; bottom:0; left:0; width:100%; background-color:#ffffff; border-top:1px solid #e5e5e5; padding:12px 24px; padding-bottom:calc(12px + env(safe-area-inset-bottom)); text-align:center; font-size:0.85rem; color:#666666; z-index:900; box-shadow:0 -2px 10px rgba(0,0,0,0.05); }
-        .global-docked-footer a { color:#de2626; text-decoration:none; font-weight:500; }
-        .global-docked-footer a:hover { text-decoration:underline; }
-        .mobile-sidebar { position:fixed; top:0; left:-300px; width:280px; height:100vh; background:#ffffff; border-right:1px solid #e5e5e5; z-index:1000; transition:left 0.3s ease; padding:24px; box-shadow:2px 0 8px rgba(0,0,0,0.1); }
-        .mobile-sidebar.open { left:0; }
-        .sidebar-overlay { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:999; }
-        .sidebar-overlay.open { display:block; }
-        .sidebar-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; }
-        .sidebar-title { font-weight:600; font-size:1.25rem; color:#1a1a1a; }
-        .close-sidebar { cursor:pointer; font-weight:600; font-size:1.2rem; color:#1a1a1a; }
-        @media (max-width:768px) {
-            body { padding-bottom:100px; }
-            .container { grid-template-columns:1fr; }
-            .left-column, .right-column { display:none; }
-            .global-docked-footer { padding-bottom:calc(16px + env(safe-area-inset-bottom)); }
-        }
 
-        .tabs { display:flex; border-bottom:2px solid #e5e5e5; margin-bottom:16px; }
-        .tab-btn { padding:10px 18px; background:none; border:none; border-bottom:2px solid transparent; margin-bottom:-2px; font-family:inherit; font-size:0.9rem; font-weight:500; cursor:pointer; color:#666; }
-        .tab-btn.active { color:#de2626; border-bottom-color:#de2626; }
-        .tab-btn:hover:not(.active) { color:#1a1a1a; }
-        .tab-panel { display:none; }
-        .tab-panel.active { display:block; }
-        .feature-list { list-style:none; padding:0; margin:0; }
-        .feature-list li { padding:10px 0; border-bottom:1px solid #f0f0f0; display:flex; align-items:flex-start; gap:10px; font-size:0.95rem; }
-        .feature-list li:last-child { border-bottom:none; }
-        .feat-icon { color:#de2626; font-size:1.1rem; flex-shrink:0; }
-        .spec-table { width:100%; border-collapse:collapse; font-size:0.9rem; }
-        .spec-table td { padding:8px 12px; border-bottom:1px solid #f0f0f0; }
-        .spec-table tr:last-child td { border-bottom:none; }
-        .spec-table td:first-child { font-weight:600; width:40%; color:#555; }
 
-    </style>
-
-<div class="content-card"><div>Tabbed content intro placeholder. Replace with context explaining the sections available below.</div></div>
+<div class="c-tabbed-content" container-type="inline-size">
+    <div class="content-card"><div>Tabbed content intro placeholder. Replace with context explaining the sections available below.</div></div>
             <div class="tabs">
                 <button class="tab-btn active" data-tab="overview">Overview</button>
                 <button class="tab-btn" data-tab="features">Features</button>
@@ -91,3 +36,4 @@
                 <div class="content-card"><div style="font-weight:600;margin-bottom:8px;">Note Heading One</div><div style="font-size:0.9rem;color:#555;line-height:1.7;">Note content placeholder. Replace with caveats, warnings, or supplementary information.</div></div>
                 <div class="content-card"><div style="font-weight:600;margin-bottom:8px;">Note Heading Two</div><div style="font-size:0.9rem;color:#555;line-height:1.7;">Additional context, references, or disclaimers go here.</div></div>
             </div>
+</div>
