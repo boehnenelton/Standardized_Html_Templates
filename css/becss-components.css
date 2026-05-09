@@ -8229,3 +8229,114 @@
         }
     }
 }
+
+/* From Template-Standard-BEJSON-Table-body-component.html */
+@layer components.bejson_table {
+    .c-bejson-table {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background: var(--bg-page);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+
+    .c-bejson-table__scroller {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .c-bejson-table__table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.9rem;
+        min-width: 800px; /* Force scroll on smaller containers */
+    }
+
+    .c-bejson-table__th {
+        background: var(--bg-alt);
+        padding: 14px 16px;
+        font-weight: 600;
+        border-bottom: 2px solid var(--border);
+        white-space: nowrap;
+    }
+
+    .c-bejson-table__td {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border-muted);
+        vertical-align: middle;
+    }
+
+    .c-bejson-table__table tbody tr:hover {
+        background: var(--bg-alt);
+    }
+
+    .c-bejson-table__type {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        font-weight: 400;
+        display: block;
+        margin-top: 2px;
+    }
+
+    .c-bejson-table__status {
+        font-size: 0.75rem;
+        font-weight: bold;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+
+    .c-bejson-table__status--true {
+        background: oklch(90% 0.1 150);
+        color: oklch(30% 0.2 150);
+    }
+
+    .c-bejson-table__status--false {
+        background: oklch(90% 0.1 25);
+        color: oklch(30% 0.2 25);
+    }
+
+    .c-bejson-table__code {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        background: var(--bg-alt);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: var(--text-main);
+    }
+
+    .c-bejson-table__null {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-style: italic;
+    }
+
+    .c-bejson-table__btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: white;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .c-bejson-table__btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+    }
+
+    .c-bejson-table__footer {
+        padding: 12px 16px;
+        background: var(--bg-alt);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        border-top: 1px solid var(--border);
+    }
+}
