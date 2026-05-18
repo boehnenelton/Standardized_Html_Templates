@@ -1,0 +1,9 @@
+<!-- Component: Ebook TOC | Type: Ebook Nav | Version: 1.0.0 -->
+<nav class="c-ebook-toc">
+    <h3>Table of Contents</h3>
+    <ul>
+        {% for chapter in chapters %}
+        <li class="{{ 'active' if chapter.current }}"><a href="{{ chapter.url }}">{{ chapter.title }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>

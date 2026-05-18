@@ -1,0 +1,29 @@
+<!-- Skeleton: Ebook Reader | Type: Reading Layout | Version: 1.0.0 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default('Ebook Reader') }}</title>
+    <link rel="stylesheet" href="css/becss-core.css">
+    <link rel="stylesheet" href="css/becss-ebook.css">
+</head>
+<body class="theme-sepia">
+    <div class="ebook-container">
+        <header class="ebook-header">
+            <button class="toc-toggle">☰ Contents</button>
+            <span class="ebook-title">{{ ebook_title }}</span>
+            <div class="read-progress"><div class="bar" style="width: 25%;"></div></div>
+        </header>
+        
+        <main class="ebook-main">
+            <!-- Body Component Injected Here -->
+            {{ body_component }}
+        </main>
+        
+        <footer class="ebook-nav-footer">
+            {{ footer_component }}
+        </footer>
+    </div>
+</body>
+</html>

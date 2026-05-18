@@ -1,0 +1,6 @@
+<!-- Component: Ebook Pagination | Type: Ebook Nav | Version: 1.0.0 -->
+<div class="c-ebook-pagination">
+    <a href="{{ prev_url }}" class="nav-btn prev {{ 'disabled' if not prev_url }}">&larr; Previous Chapter</a>
+    <span class="page-count">Page {{ current_page }} of {{ total_pages }}</span>
+    <a href="{{ next_url }}" class="nav-btn next {{ 'disabled' if not next_url }}">Next Chapter &rarr;</a>
+</div>
